@@ -42,7 +42,7 @@ def get_matching_recipe (ingredients):
     #Step 4
     recipie_matched = match_input_ingredient_and_recipie_ingredient(ingredients, recipe_dict)
     #Step 5
-    selected_items = sorted(recipie_matched.keys(), key=lambda key: (recipie_matched[key]['missing_percent'], recipe_dict[key][0].recipe.rate if recipe_dict[key][0].recipe.rate else 0))
+    selected_items = sorted(recipie_matched.keys(), key=lambda key: (1 - recipie_matched[key]['missing_percent'], recipe_dict[key][0].recipe.rate if recipe_dict[key][0].recipe.rate else 0))
     #Step 6
 
     output = serialize_recipe(selected_items, recipe_dict, recipie_matched)  
