@@ -21,13 +21,3 @@ class IngredientAutocomplete(TestCase):
 
     def test_valid_input(self):
                print("Hello, I didn't write test case because of timelimitss")
-
-def test_reipe_get_matching_recipe_empty_list():
-    print("Hello, I didn't write test case because of timelimitss")
-
-def test_reipe_get_matching_recipe_huge_list_of_ingredietns():
-    print("Hello, I didn't write test case because of timelimitss")
-
-def test_reipe_get_matching_recipe_huge_list_of_ingredietns():
-    print("Hello, I didn't write test case because of timelimitss")
-
