@@ -1,0 +1,3 @@
+bon marché : 5907
+coût moyen : 3256
+assez cher : 328
