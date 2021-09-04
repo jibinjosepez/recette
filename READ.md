@@ -36,10 +36,16 @@ Tables:  [Detailed structure and indexes can be found in recipe/models.py]
 Applications :
     This is a single page application developed in Django. Django's MVC framework is used to design the application. I have used default sqlite to run the app.
 
+Challanges: 
+    Biggest challange was recipie,json doesn't contain proper ingredeints. So matching them is pretty hard. Also had to provide a super list  of ingredients to the custmer to select from. I solved it by scrapping the data from marmiton. 
 
+    Second challenge was to design  table structure for fast retrivel. I came up with a hybrid approach where I use both db and application code to match ingredients. Detailed comment and logic can be found in recipe/reipe.py
+    
 Optimizations: 
+    For now I applied couple of optimization techniques like cahcing some static data and also added some filtering on queries. 
 
 
 How To Deploy :
-    
-
+    Application is deployed in heroku.
+    I have used this doc to deply app in heroku : https://medium.com/geekculture/how-to-deploy-a-django-app-on-heroku-4d696b458272
+    Keep debug == True and don't use postgres. 
