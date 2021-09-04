@@ -24,6 +24,9 @@ class IngredientSearchView(View):
 class IngredientAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = Ingredient.objects.all()
+        print (qs)
+        print (self.q)
+
         if self.q:
             qs = qs.filter(name__istartswith=self.q)
         return qs
