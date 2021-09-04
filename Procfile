@@ -1,1 +1,1 @@
-web: gunicorn recette.wsgi
+web: gunicorn recette.wsgi --log-file
