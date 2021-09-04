@@ -56,3 +56,12 @@ How To Deploy :
     Application is deployed in heroku.
     I have used this doc to deply app in heroku : https://medium.com/geekculture/how-to-deploy-a-django-app-on-heroku-4d696b458272
     Keep debug == True and don't use postgres. 
+
+Not considered :
+    Quanity of ingredient not considered. 
+    Data insertion (Ingredient, Recipe) not considered
+
+Some potential use case: 
+    Suggest where to buy ingredients
+    Collect user search data.
+    
