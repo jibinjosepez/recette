@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-z3i(bb4-9!(kct$3z2e8xap_rm%+!!!ktfh@-*@d)5%*tglg@&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com', 'https://pennylane-recette.herokuapp.com', 'localhost']
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
@@ -102,9 +102,9 @@ DATABASES = {
 }
 
 
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+# import dj_database_url
+# db_from_env = dj_database_url.config(conn_max_age=500)
+# DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
