@@ -57,6 +57,9 @@ MIDDLEWARE = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+if not DEBUG:
+    STATIC_ROOT = ''
+    
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
