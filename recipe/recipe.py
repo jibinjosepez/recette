@@ -5,8 +5,8 @@ from django.core.cache import cache
 
 PERMITTED_PERCENTAGE_OF_MATCHING_ITEM=70
 MAX_OUTPUT = 10
-REIPIE_WITH_LESS_THAN_2_INGREDIENT = 'recipie_ing_less_than_2'
-MINIMUM_INGREDIENT_VALUE = 3
+REIPIE_WITH_LESS_THAN_5_INGREDIENT = 'recipie_ing_less_than_5'
+MINIMUM_INGREDIENT_VALUE = 5
 
 def get_matching_recipe (ingredients):
     
@@ -32,9 +32,11 @@ def get_matching_recipe (ingredients):
 
     #Step 1
     recipe_ids = get_recipe_matching_with_minimum_matching_ingradients(ingredients)
-    #Step 2
-    recipe_ids.extend(get_recipiewith_less_than_x_ingredient(MINIMUM_INGREDIENT_VALUE))
 
+    #Step 2
+    recipe_id_with_min_ingredient = get_recipiewith_less_than_x_ingredient(MINIMUM_INGREDIENT_VALUE)
+    recipe_ids.extend(get_recipe_matching_with_matching_ingradients(recipe_id_with_min_ingredient, ingredients))
+    
     if len(recipe_ids) == 0 :
         return []
     #Step 3
@@ -46,20 +48,21 @@ def get_matching_recipe (ingredients):
     #Step 6
 
     output = serialize_recipe(selected_items, recipe_dict, recipie_matched)  
-    print (output)
-
     return output
 
+def get_recipe_matching_with_matching_ingradients (recipe_id, ingredients) :
+    return list(RecipeIngredient.objects.filter(ingredient_id__in=ingredients, recipe_id__in=recipe_id ).values_list("recipe_id", flat=True).annotate(count=Count('recipe_id')).filter(count__lte=MINIMUM_INGREDIENT_VALUE))
+
 def get_recipe_matching_with_minimum_matching_ingradients(ingredients):
-    return list(RecipeIngredient.objects.filter(ingredient_id__in=ingredients).values_list("recipe_id", flat=True).annotate(count=Count('recipe_id')).filter(count__gt=3))
+    return list(RecipeIngredient.objects.filter(ingredient_id__in=ingredients).values_list("recipe_id", flat=True).annotate(count=Count('recipe_id')).filter(count__gt=MINIMUM_INGREDIENT_VALUE))
 
 
 def get_recipiewith_less_than_x_ingredient(x):
-    if  cache.get(REIPIE_WITH_LESS_THAN_2_INGREDIENT) :
-        return cache.get(REIPIE_WITH_LESS_THAN_2_INGREDIENT)
+    if  cache.get(REIPIE_WITH_LESS_THAN_5_INGREDIENT) :
+        return cache.get(REIPIE_WITH_LESS_THAN_5_INGREDIENT)
     else:
         queryset = list(RecipeIngredient.objects.filter().values_list('recipe_id', flat=True).annotate(count=Count('recipe_id')).filter(count__lte=x))
-        cache.set(REIPIE_WITH_LESS_THAN_2_INGREDIENT, queryset)
+        cache.set(REIPIE_WITH_LESS_THAN_5_INGREDIENT, queryset)
         return queryset
 
 def get_recipe_with_ingredient(recipe_ids):
