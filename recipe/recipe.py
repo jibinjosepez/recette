@@ -17,9 +17,8 @@ def get_matching_recipe (ingredients):
 
         Description : 
             Steps:
-            1. Get all the recipies with atleast 3 ingredient match to the input. I selected 3 because only very few recipie has ingredients less than 3
-            2. Get all recipes with less than 3 ingredients merge it with recipie list. This is cached. 
-                we have only 10 recipe with less than 2 items needed. If this grows  the performance will be impacted
+            1. Get all the recipies with atleast MINIMUM_INGREDIENT_VALUE ingredient matches to the input.
+            2. Get all recipes with less than MINIMUM_INGREDIENT_VALUE ingredients(This is cached) and if it contins atleast one ingredient from input, merge it with recipie list. 
             3. Get Recipie with ingredients fromt the table. (this can be cached)
             4. Go through the ingredients of given recipie and find the percentage of map with user inpout
                 if it is > PERMITTED_PERCENTAGE_OF_MATCHING_ITEM add to final list
