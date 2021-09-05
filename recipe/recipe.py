@@ -3,7 +3,7 @@ import json
 from django.db.models import Count
 from django.core.cache import cache
 
-PERMITTED_PERCENTAGE_OF_MATCHING_ITEM=50
+PERMITTED_PERCENTAGE_OF_MATCHING_ITEM=70
 MAX_OUTPUT = 10
 REIPIE_WITH_LESS_THAN_2_INGREDIENT = 'recipie_ing_less_than_2'
 MINIMUM_INGREDIENT_VALUE = 3
